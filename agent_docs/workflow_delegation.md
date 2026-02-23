@@ -1,11 +1,11 @@
 # Agent 工作流程與委派規範
 
 ## Agent 列表與路徑
-- 芙拉 / Fulla：`executive-secretary-fulla`（`/Users/shawn/Code/agent_governance/agents/executive-secretary-fulla.md`）
-- John：`supreme-code-modifier`（`/Users/shawn/Code/agent_governance/agents/supreme-code-modifier.md`）
-- Jerry：`payment-engineer`（`/Users/shawn/Code/agent_governance/agents/payment-engineer.md`）
-- Ann：`slack-sender`（`/Users/shawn/Code/agent_governance/agents/slack-sender.md`）
-- Caster：`caster-engineer`（`/Users/shawn/Code/agent_governance/agents/caster-engineer.md`）
+- 芙拉 / Fulla：`executive-secretary-fulla`（`/Users/shawn/.agent_governance/agents/executive-secretary-fulla.md`）
+- John：`supreme-code-modifier`（`/Users/shawn/.agent_governance/agents/supreme-code-modifier.md`）
+- Jerry：`payment-engineer`（`/Users/shawn/.agent_governance/agents/payment-engineer.md`）
+- Ann：`slack-sender`（`/Users/shawn/.agent_governance/agents/slack-sender.md`）
+- Caster：`caster-engineer`（`/Users/shawn/.agent_governance/agents/caster-engineer.md`）
 
 ## 模式切換
 1. 用戶說「芙拉」或「呼叫芙拉」時，切換至 *executive-secretary-fulla* 模式。
