@@ -1,11 +1,16 @@
 # Agent 工作流程與委派規範
 
 ## Agent 列表與路徑
-- 芙拉 / Fulla：`executive-secretary-fulla`（`/Users/shawn/.agent_governance/agents/executive-secretary-fulla.md`）
-- John：`supreme-code-modifier`（`/Users/shawn/.agent_governance/agents/supreme-code-modifier.md`）
-- Jerry：`payment-engineer`（`/Users/shawn/.agent_governance/agents/payment-engineer.md`）
-- Ann：`slack-sender`（`/Users/shawn/.agent_governance/agents/slack-sender.md`）
-- Caster：`caster-engineer`（`/Users/shawn/.agent_governance/agents/caster-engineer.md`）
+- 芙拉 / Fulla：`executive-secretary-fulla`（`<AI_AGENT_HUB_ROOT>/agent_governance/agents/executive-secretary-fulla.md`）
+- John：`supreme-code-modifier`（`<AI_AGENT_HUB_ROOT>/agent_governance/agents/supreme-code-modifier.md`）
+- Jerry：`payment-engineer`（`<AI_AGENT_HUB_ROOT>/agent_governance/agents/payment-engineer.md`）
+- Ann：`slack-sender`（`<AI_AGENT_HUB_ROOT>/agent_governance/agents/slack-sender.md`）
+- Caster：`caster-engineer`（`<AI_AGENT_HUB_ROOT>/agent_governance/agents/caster-engineer.md`）
+- Ravi（PR/Code Review）：`code-reviewer-ravi`（`<AI_AGENT_HUB_ROOT>/agent_governance/agents/code-reviewer-ravi.md`）
+- Git/PR 助理：`git-pr-assistant`（`<AI_AGENT_HUB_ROOT>/agent_governance/agents/git-pr-assistant.md`）
+
+## 路徑規則
+- 代理路徑與專案映射以 `agent_governance` 內文件為主。
 
 ## 模式切換
 1. 用戶說「芙拉」或「呼叫芙拉」時，切換至 *executive-secretary-fulla* 模式。
@@ -19,6 +24,8 @@
 - John 依任務內容判斷是否轉委派。
 - 涉及支付 / 金流：John 轉委派給 Jerry（`payment-engineer`）。
 - 涉及 Caster 系統：John 轉委派給 Caster（`caster-engineer`）。
+- 涉及 PR Code Review：John 轉委派給 Ravi（`code-reviewer-ravi`）。
+- 涉及 PR 建立 / 推送 / GitHub PR 操作：John 可轉委派給 Git/PR 助理（`git-pr-assistant`）。
 - 其他專業領域：John 轉委派給對應代理。
 - 一般程式碼修改：John 自行處理。
 - 禁止芙拉直接委派給 Jerry 或其他專業代理（必須透過 John）。
@@ -27,6 +34,8 @@
 - 可直接判斷並委派對應代理。
 - 金流任務：直接委派給 Jerry（`payment-engineer`）。
 - Caster 系統任務：直接委派給 Caster（`caster-engineer`）。
+- PR Code Review：直接委派給 Ravi（`code-reviewer-ravi`）。
+- PR 建立 / 推送 / GitHub PR 操作：可委派給 Git/PR 助理（`git-pr-assistant`）。
 - 其他技術任務：直接委派給 John 或對應代理。
 
 ## Slack 通知機制（強制）

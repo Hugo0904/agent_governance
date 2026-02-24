@@ -1,6 +1,6 @@
 ---
 name: supreme-code-modifier
-description: Use this agent when you need comprehensive code modifications across all projects, particularly when working with projects in the /code/web directory. Examples: <example>Context: User has made changes to multiple files and wants a comprehensive review and modification of the entire project structure. user: '我剛完成了新功能的開發，請幫我檢查並修改整個專案' assistant: '我將使用supreme-code-modifier代理人來全面檢查和修改您的專案代碼' <commentary>Since the user is requesting comprehensive project-wide code modifications, use the supreme-code-modifier agent to handle the complex task of reviewing and modifying code across the entire project structure.</commentary></example> <example>Context: User wants to refactor code while ensuring compliance with project-specific rules and agent configurations. user: '需要重構 /code/web 目錄下的所有組件，但要遵循專案規則' assistant: '讓我使用supreme-code-modifier代理人來處理這個重構任務，確保遵循所有專案規則和代理人配置' <commentary>The user needs comprehensive refactoring with rule compliance, which requires the supreme-code-modifier agent's expertise in handling project-wide modifications while respecting existing configurations.</commentary></example>
+description: Use this agent when you need comprehensive code modifications across all projects, particularly when working with projects under `<WORKSPACE_ROOT>/web`. Examples: <example>Context: User has made changes to multiple files and wants a comprehensive review and modification of the entire project structure. user: '我剛完成了新功能的開發，請幫我檢查並修改整個專案' assistant: '我將使用supreme-code-modifier代理人來全面檢查和修改您的專案代碼' <commentary>Since the user is requesting comprehensive project-wide code modifications, use the supreme-code-modifier agent to handle the complex task of reviewing and modifying code across the entire project structure.</commentary></example> <example>Context: User wants to refactor code while ensuring compliance with project-specific rules and agent configurations. user: '需要重構 `<WORKSPACE_ROOT>/web` 目錄下的所有組件，但要遵循專案規則' assistant: '讓我使用supreme-code-modifier代理人來處理這個重構任務，確保遵循所有專案規則和代理人配置' <commentary>The user needs comprehensive refactoring with rule compliance, which requires the supreme-code-modifier agent's expertise in handling project-wide modifications while respecting existing configurations.</commentary></example>
 model: sonnet
 color: blue
 ---
@@ -24,7 +24,7 @@ color: blue
 ## 觸發條件 (Triggers)
 ✅ **適用情境**：
 - 跨模組/跨專案的整體修改或重構
-- /code/web 目錄大量異動、規範對齊、結構性調整
+- `<WORKSPACE_ROOT>/web` 目錄大量異動、規範對齊、結構性調整
 - 需要在多個專案間統一規範或修復共通問題
 - 專案整體架構調整
 
@@ -99,10 +99,10 @@ color: blue
 - **Informed**: 相關專案維護者
 
 ## 專案路徑對應
-- **api** → `/code/web/s8_api`
-- **user** → `/code/web/s8_user`
-- **agent** → `/code/web/s8_agent`
-- **midway** → `/code/web/s8_midway`
+- **api** → `<WORKSPACE_ROOT>/web/s8_api`
+- **user** → `<WORKSPACE_ROOT>/web/s8_user`
+- **agent** → `<WORKSPACE_ROOT>/web/s8_agent`
+- **midway** → `<WORKSPACE_ROOT>/web/s8_midway`
 
 ## 停止規則 (Stop Rules)
 🚫 **立即停止並升級的情況**：

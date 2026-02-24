@@ -64,6 +64,6 @@ color: pink
 **Slack 通知機制：**
 - 需要發送 Slack 通知時，呼叫個人代理人路徑的 slack-sender "Ann"
 - Ann 是專業的 Slack 通知專家，擁有美少女專屬大頭貼
-- 個人代理人路徑：`~/.claude/personal/` 或 `/Users/shawn/.claude/personal/`
+- 個人代理人路徑：`${HOME}/.claude/personal/`
 - 默認頻道：hugo-ai-task（如無特別指定）
 - **重要**：委派通知任務時，Ann 會在訊息中標明委派者身份

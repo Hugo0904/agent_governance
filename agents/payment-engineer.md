@@ -75,7 +75,7 @@ color: cyan
 **重要原則：如果任務中未提供上述任何一項資訊，必須主動詢問，絕對不可自行假設或帶入預設值**
 
 **工作流程：**
-1. **優先檢查進度筆記**: 收到金流串接任務時，先檢查 `/Users/shawn/Code/progress/` 目錄
+1. **優先檢查進度筆記**: 收到金流串接任務時，先檢查 `<AI_AGENT_HUB_ROOT>/progress/` 目錄
    - 尋找類似金流的筆記檔案 (如 `*-integration.md`)
    - 如果找到相關筆記，參考其檔案清單和執行經驗
    - 如果沒有找到，依照下述標準流程執行
@@ -100,9 +100,9 @@ color: cyan
 ## 金流串接完成記錄範例
 
 ### 專案路徑
-- agent: `/Users/shawn/Code/web/s8_agent`
-- midway: `/Users/shawn/Code/web/s8_midway`
-- user: `/Users/shawn/Code/web/s8_user`
+- agent: `<WORKSPACE_ROOT>/web/s8_agent`
+- midway: `<WORKSPACE_ROOT>/web/s8_midway`
+- user: `<WORKSPACE_ROOT>/web/s8_user`
 
 ### 廠商資訊
 - 廠商代號：[廠商代號]
@@ -113,12 +113,12 @@ color: cyan
 
 #### Agent 專案檔案修改清單
 1. **config/payment.php** - 廠商配置檔案
-   - 路徑：`/Users/shawn/Code/web/s8_agent/config/payment.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_agent/config/payment.php`
    - 修改內容：添加新廠商的基本配置區塊
    - 確認位置：查找 PAYMENT_OPTIONS 陣列中的廠商配置區域
 
 2. **resources/views/includes/payment/deposit/3rd/[廠商代號].blade.php** - 支付表單模板
-   - 路徑：`/Users/shawn/Code/web/s8_agent/resources/views/includes/payment/deposit/3rd/[廠商代號].blade.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_agent/resources/views/includes/payment/deposit/3rd/[廠商代號].blade.php`
    - 修改內容：建立該廠商的支付表單模板
    - 參考同類型廠商的模板結構
 
@@ -147,33 +147,33 @@ color: cyan
 
 **實際修改檔案：**
 1. **app/Payments/[廠商代號]Payment.php** - 主要支付處理類
-   - 路徑：`/Users/shawn/Code/web/s8_midway/app/Payments/[廠商代號]Payment.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_midway/app/Payments/[廠商代號]Payment.php`
    - 修改內容：繼承自 BasePayment，實作支付邏輯
    - 包含安全驗證、訂單創建、支付結果處理
 
 2. **config/payments/[廠商代號].php** - 支付配置檔
-   - 路徑：`/Users/shawn/Code/web/s8_midway/config/payments/[廠商代號].php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_midway/config/payments/[廠商代號].php`
    - 修改內容：定義支付方式、類型和啟用狀態
 
 3. **app/Models/Pay[廠商代號].php** - 資料模型
-   - 路徑：`/Users/shawn/Code/web/s8_midway/app/Models/Pay[廠商代號].php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_midway/app/Models/Pay[廠商代號].php`
    - 修改內容：對應資料表的 Eloquent ORM 模型
 
 4. **app/Repositories/Pay[廠商代號]Repository.php** - 資料存取層
-   - 路徑：`/Users/shawn/Code/web/s8_midway/app/Repositories/Pay[廠商代號]Repository.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_midway/app/Repositories/Pay[廠商代號]Repository.php`
    - 修改內容：繼承自 BaseRepository，提供資料庫操作抽象
 
 5. **app/Http/v1/Controllers/[廠商代號]Controller.php** - API 控制器
-   - 路徑：`/Users/shawn/Code/web/s8_midway/app/Http/v1/Controllers/[廠商代號]Controller.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_midway/app/Http/v1/Controllers/[廠商代號]Controller.php`
    - 修改內容：處理支付結果回調，整合 PaymentFactory
 
 6. **app/Http/v1/Requests/[廠商代號]ResultRequest.php** - 請求驗證類
-   - 路徑：`/Users/shawn/Code/web/s8_midway/app/Http/v1/Requests/[廠商代號]ResultRequest.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_midway/app/Http/v1/Requests/[廠商代號]ResultRequest.php`
    - 修改內容：驗證支付回調參數、安全驗證、Slack 通知整合
    - **注意**：此檔案後續可能需根據實際廠商文件進行細微調整
 
 7. **routes/payment.php** - 路由配置
-   - 路征：`/Users/shawn/Code/web/s8_midway/routes/payment.php`
+   - 路征：`<WORKSPACE_ROOT>/web/s8_midway/routes/payment.php`
    - 修改內容：添加廠商路由群組和 result 端點
 
 **Midway 端整合特點：**
@@ -187,17 +187,17 @@ color: cyan
 
 **實際修改檔案：**
 1. **app/Payments/[廠商代號]Payment.php** - 支付處理類
-   - 路徑：`/Users/shawn/Code/web/s8_user/app/Payments/[廠商代號]Payment.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_user/app/Payments/[廠商代號]Payment.php`
    - 修改內容：繼承 ThirdPartyPayment，實作 getPaymentStores() 方法
    - 支援 ATM 支付和動態商店選擇機制
 
 2. **config/payment.php** - 支付配置檔案
-   - 路徑：`/Users/shawn/Code/web/s8_user/config/payment.php`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_user/config/payment.php`
    - 修改內容：確認包含廠商設定（通常已由 Agent 端同步）
    - 包含廠商代號、支付類型、標籤設定
 
 3. **CLAUDE.md** - 專案文件記錄
-   - 路徑：`/Users/shawn/Code/web/s8_user/CLAUDE.md`
+   - 路徑：`<WORKSPACE_ROOT>/web/s8_user/CLAUDE.md`
    - 修改內容：更新 User 端實作清單和技術說明
 
 **User 端整合特點：**

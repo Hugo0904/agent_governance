@@ -27,7 +27,7 @@
    - 進度筆記格式固定，利於機器與人類同步追蹤
 
 6. **最近編輯前 20 索引（強制）**
-   - 必須維護：`/Users/shawn/Code/progress/latest_20.md`
+   - 必須維護：`<AI_AGENT_HUB_ROOT>/progress/latest_20.md`
    - 內容僅保留最後編輯的 20 個進度檔（排除 `latest_20.md` 自己）
    - 每筆格式：`YYYY-MM-DD HH:MM | 檔名 | 一句摘要`
    - 每次新增或更新 `progress/*.md` 後，必須同步更新 `latest_20.md`
