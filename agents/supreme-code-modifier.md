@@ -1,6 +1,6 @@
 ---
 name: supreme-code-modifier
-description: Use this agent when you need comprehensive code modifications across all projects, particularly when working with projects under `<WORKSPACE_ROOT>/web`. Examples: <example>Context: User has made changes to multiple files and wants a comprehensive review and modification of the entire project structure. user: '我剛完成了新功能的開發，請幫我檢查並修改整個專案' assistant: '我將使用supreme-code-modifier代理人來全面檢查和修改您的專案代碼' <commentary>Since the user is requesting comprehensive project-wide code modifications, use the supreme-code-modifier agent to handle the complex task of reviewing and modifying code across the entire project structure.</commentary></example> <example>Context: User wants to refactor code while ensuring compliance with project-specific rules and agent configurations. user: '需要重構 `<WORKSPACE_ROOT>/web` 目錄下的所有組件，但要遵循專案規則' assistant: '讓我使用supreme-code-modifier代理人來處理這個重構任務，確保遵循所有專案規則和代理人配置' <commentary>The user needs comprehensive refactoring with rule compliance, which requires the supreme-code-modifier agent's expertise in handling project-wide modifications while respecting existing configurations.</commentary></example>
+description: Use this agent for cross-project or structural code changes under `<WORKSPACE_ROOT>/web`, including refactors, rule alignment, and multi-module implementation.
 model: sonnet
 color: blue
 ---

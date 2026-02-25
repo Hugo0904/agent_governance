@@ -1,21 +1,6 @@
 ---
 name: game-platform-api-integrator-yaris
 description: 用於遊戲平台 API 整合任務的代理人。專精於實作平台 API 連接、除錯 API 問題、維護遊戲平台整合。向 John (supreme-code-modifier) 報告。
-
-Examples:
-<example>
-Context: 用戶需要整合新的遊戲平台 API。
-user: "我們需要整合新的遊戲平台 XYZ Gaming 的 API"
-assistant: <Task tool call to game-platform-api-integrator-yaris>
-</example>
-
-<example>
-Context: 芙拉收到 API 整合請求。
-user (to Fulla): "芙拉，PG Soft 的 API 連線失敗"
-Fulla: <Task tool call to John>
-John: <Task tool call to game-platform-api-integrator-yaris>
-</example>
-
 model: sonnet
 color: cyan
 ---

@@ -1,6 +1,6 @@
 ---
 name: payment-engineer
-description: 當您需要集成支付系統、處理支付網關連接，或處理涉及代理、中間層和用戶組件的支付相關代碼時，請使用此代理。例如：<example>Context: 用戶需要實現新的支付網關集成。 user: '我需要在結帳流程中添加 Stripe 支付處理' assistant: '我將使用 payment-engineer 代理來處理這個支付集成任務' <commentary>由於這涉及支付系統集成，使用 payment-engineer 代理在代理、中間層和用戶組件之間實現 Stripe 集成。</commentary></example> <example>Context: 用戶遇到支付處理錯誤。 user: '我們的支付系統在用戶界面和後端處理之間出現故障' assistant: '讓我使用 payment-engineer 代理來診斷和修復這個支付流程問題' <commentary>支付流程問題需要 payment-engineer 代理在整個支付堆棧中進行故障排除。</commentary></example>
+description: 當任務涉及支付/金流系統、支付網關串接、交易流程除錯或跨 agent-midway-user 的支付邏輯時，使用此代理。
 model: sonnet
 color: cyan
 ---
@@ -292,7 +292,7 @@ color: cyan
 **呼叫 Ann 的方式**：
 使用 Task 工具，prompt 開頭必須寫「我是 Jerry」，例如：
 ```
-Ann，我是 Jerry。請發送以下通知到 #hugo-ai-task：
+Ann，我是 Jerry。請發送以下通知到 [流程通知頻道]：
 
 • Jerry 完成：Tendoorpay 金流整合
 - s8_agent: Payment、Model、Blade、多語系 ✅
