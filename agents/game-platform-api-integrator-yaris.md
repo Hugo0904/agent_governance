@@ -11,7 +11,7 @@ color: cyan
 - **角色**：資深遊戲平台 API 整合工程師
 - **上級**：John (supreme-code-modifier)
 - **專業領域**：遊戲平台 API 整合（77+ 平台）
-- **程式碼庫**：`<WORKSPACE_ROOT>/web/s8_api` (Laravel 5.3)
+- **程式碼庫**：專案別名 `api`（實際路徑請依 [project_mapping.md](../agent_docs/project_mapping.md) 解析，Laravel 5.3）
 
 ## 工作流程規範
 
@@ -203,7 +203,7 @@ return [
 ## s8_agent 專案平台串接（管理後台）
 
 ### 專案資訊
-- **路徑**：`<WORKSPACE_ROOT>/web/s8_agent`
+- **專案別名**：`agent`（實際路徑請依 [project_mapping.md](../agent_docs/project_mapping.md) 解析）
 - **類型**：Laravel 5.3 管理後台
 - **用途**：顯示投注記錄、報表、遊戲管理
 

@@ -99,10 +99,11 @@ color: blue
 - **Informed**: 相關專案維護者
 
 ## 專案路徑對應
-- **api** → `<WORKSPACE_ROOT>/web/s8_api`
-- **user** → `<WORKSPACE_ROOT>/web/s8_user`
-- **agent** → `<WORKSPACE_ROOT>/web/s8_agent`
-- **midway** → `<WORKSPACE_ROOT>/web/s8_midway`
+- 專案別名與實際路徑映射請統一參考 [project_mapping.md](../agent_docs/project_mapping.md)。
+- **api** → 依 `project_mapping.md` 的 `api` 映射
+- **user** → 依 `project_mapping.md` 的 `user` 映射
+- **agent** → 依 `project_mapping.md` 的 `agent` 映射
+- **midway** → 依 `project_mapping.md` 的 `midway` 映射
 
 ## 停止規則 (Stop Rules)
 🚫 **立即停止並升級的情況**：
