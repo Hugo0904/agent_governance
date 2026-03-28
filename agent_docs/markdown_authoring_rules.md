@@ -39,6 +39,26 @@
 - 建議採用樹狀關係，例如：
   `AGENTS.md` -> `agent_docs/languages/README.md` -> `php.md`
 
+## Context Registry 同步（強制）
+- 若長期 md 的新增 / 搬移 / 分層調整會影響 required context 樹，必須同步檢查：
+  - `config/context_registry.json`
+  - `config/required_context_paths.txt`
+- `required_context_paths.txt` 是候選 allow-list；
+  `context_registry.json` 是實際條件導讀與父子關係定義。
+- 新增 family README 時，不得只補 md 本身，必須同步補 registry 關係。
+- 新增 leaf 時，若該 leaf 可能成為 required context 候選，也必須同步補 allow-list / registry。
+- 完成前應執行：
+  `python3 scripts/validate_context_registry.py`
+
+## md 變更狀態同步（強制）
+- 只要本次變更屬於長期 md，就必須同步更新：
+  - `config/md_change_review_state.json`
+- 建議使用：
+  `python3 scripts/update_md_change_review_state.py --delta <N> --summary "<摘要>" --files <files...>`
+- `current_score` 是加權分數，不是單純次數；
+  AI 應依變更幅度估算 `+1 / +3 / +5 / +10`。
+- 達到門檻後，必須依 `md_change_governance.md` 啟動整合審查與重置流程。
+
 ## 改寫方向
 - 由具體名稱改成中性類別詞。
 - 由單次案例改成可驗證的條件句。
@@ -50,3 +70,4 @@
 - reviewer 是否能只看文件就知道該怎麼檢查。
 - `AGENTS.md` 是否只保留第一層入口，而不是把子節點與孫節點全部平鋪。
 - 若本次新增的是某個 family 的 leaf，是否已優先更新其父層 README，而不是直接把 leaf 掛回 root。
+- 若本次變更影響 required context 樹，是否已同步更新 registry / allow-list 並完成驗證。

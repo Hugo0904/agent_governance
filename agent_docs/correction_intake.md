@@ -56,6 +56,11 @@
 - 問題出在「AI 沒先讀到正確上下文」時，應調整 `AGENTS.md` 的條件導讀。
 - 問題出在「已讀到上下文但內容仍不足」時，應更新對應主題文件，而不是把細節硬塞進 `AGENTS.md`。
 
+## 長期 md 變更補充（強制）
+- 若本次指正會導致長期 md 新增 / 搬移 / 分層調整，先遵守 `md_change_governance.md`，再真正開始編輯。
+- 若變更影響 required context 樹，需同步檢查 `config/context_registry.json` 與 `config/required_context_paths.txt`。
+- 若實際有新增 / 修改長期 md，需同步更新 `config/md_change_review_state.json`。
+
 ## 不可直接寫成規則的情況
 - 使用者只是舉例，未確認真實業務語意。
 - 尚未查清專案實作、資料來源或責任邊界。
