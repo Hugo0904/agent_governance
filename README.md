@@ -8,6 +8,8 @@
   - DB 規範目錄：`agent_docs/db/README.md`
   - 語言規範目錄：`agent_docs/languages/README.md`
   - 長期 Markdown 變更治理：`agent_docs/md_change_governance.md`
+  - 規則演化治理：`agent_docs/rule_evolution_governance.md`
+  - Seed Memory 進化論治理：`agent_docs/seed_memory_governance.md`
   - PR review 治理：`agent_docs/review_governance.md`
   - Task 規範目錄：`agent_docs/task/README.md`
   - Task intake 流程：`agent_docs/task_intake_workflow.md`
@@ -19,6 +21,10 @@
   用於長期 md 治理、樹狀索引整合、context routing 與 token 成本檢查。
 - `config/md_change_review_state.json`：
   用於追蹤長期 md 變更的加權分數；達門檻後需啟動整合審查並重置。
+- `config/rule_evolution_policy.json`：
+  用於保存規則優先權、生命週期狀態、衝突解法與防循環限制的結構化政策。
+- `config/seed_memory_policy.json`：
+  用於保存 Seed Memory 的 O(1) runtime 載入上限、卡片檔案位置與 LLM 原生能力邊界。
 
 ## 主規範入口
 - `<WORKSPACE_ROOT>/AGENTS.md`
