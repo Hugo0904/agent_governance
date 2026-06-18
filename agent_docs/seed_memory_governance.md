@@ -56,6 +56,21 @@ Seed Memory 應像從核心向外延伸的網狀記憶，而不是把所有教�
 
 建立或更新 card 是獨立 intake 行為，必須通過來源、scope、敏感資訊、LLM 原生能力與成長欄位檢查。每次執行 resolver 不應增加 card 數量；若 card 變多，來源應是明確 intake，而不是 runtime 召回。
 
+## 明確記住作動保證
+Seed Memory 必須有自己的 intake 觸發機制，不能把「對話中使用者說了記住」交給 Codex 內建 Memory 或模型自由發揮。
+
+- 每回合先跑 `resolve_seed_memory.py` 做唯讀召回，再跑 `seed_intake_guard.py` 做唯讀 intake 判斷。
+- `seed_intake_guard.py` 命中 `requires_intake=true` 時，本回合結束前必須得到一個 outcome：
+  - `active_card_created`：使用者明確教導、指正或偏好，且 scope、來源、邊界、非 LLM 原生原因都足夠清楚。
+  - `candidate_card_created`：內容可能有價值，但仍需要更多確認、重複證據或使用者驗證。
+  - `project_rule_required`：內容其實是專案 hard rule、測試契約或文件規範，不應只放 Seed card。
+  - `progress_only`：內容只適合留下本次任務脈絡，不適合長期記憶。
+  - `blocked_sensitive`：內容含敏感資料或不可保存脈絡，必須阻擋並說明。
+  - `needs_clarification`：無法判斷分層或可保存性時，先詢問使用者。
+- 每個 outcome 必須用 `add_seed_intake_receipt.py` 寫入 `progress/seed_intake_receipts.jsonl`，讓未來能查明「為什麼有 / 沒有建卡」。
+- Codex 內建 Memory 可以默默運作，但它只是背景能力；即使內建 Memory 已寫入，Seed guard 命中時仍需完成 Seed outcome 或 receipt。
+- intake guard 不是建卡工具；它只負責避免明確記住訊號被漏掉。真正建卡仍需使用 `add_seed_lesson.py`、`add_seed_preference.py` 或相應專案文件流程。
+
 ## 教育式成長模型
 Seed Memory 不是管教系統，也不是硬性命令清單。它更像使用者長期教育 AI 時留下的成長提醒：
 
