@@ -51,6 +51,7 @@ color: cyan
 
 ## 專案規則導向
 - 實際檔案落點、欄位契約、migration 規則、對外串接資訊，請以目標專案自己的規則檔為準。
+- C# / NewBendon 這類外部建單器若只是被要求「參考」或「確認有沒有分支」，預設只能做唯讀檢查：可搜尋本地檔案、遠端分支、vendor 代號、別名與既有實作；除非使用者明確要求修改該專案，否則不得在 C# repo 新增、修改或刪除程式、enum、md 或其他檔案。
 - 在 `s8_*` 專案族群中，支付串接時應優先讀取：
   - `web/s8_agent/agent_rules/PAYMENT_VENDOR_GUIDE.md`
   - `web/s8_midway/PAYMENT_VENDOR_INTEGRATION.md`

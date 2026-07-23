@@ -9,6 +9,8 @@
 - 需要判斷是否應主動做只讀 DB 驗證。
 
 ## 子文件索引
+- `agent_governance/agent_docs/db/oltp_olap_consistency_accelerator.md`
+  OLTP / OLAP / ClickHouse / CDC 報表一致性檢查的通用導讀；用於快速找到目標專案自己的 runbook、secret 建立引導與只讀檢查腳本。
 - `agent_governance/agent_docs/db_inspection.md`
   何時可以主動查看 DB、查詢邊界、只讀原則、檢查順序。
 - `agent_governance/agent_docs/workspace_db_access.md`
