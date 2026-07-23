@@ -46,24 +46,22 @@
 
 ## Registry 維護（強制）
 - 若本次新增 / 搬移 / 重新分層的文件，會影響 required context 的樹狀入口或 leaf 關係，必須同步檢查：
-  - `config/context_registry.json`
-  - `config/required_context_paths.txt`
+  - 宿主 context registry
+  - 宿主 required-context allow-list
 - 若新增的是 family README：
-  - 補 parent / child 關係到 `context_registry.json`
-  - 補候選路徑到 `required_context_paths.txt`
+  - 補 parent / child 關係到宿主 registry
+  - 補候選路徑到宿主 allow-list
 - 若新增的是 leaf：
   - 先補父層 `README.md`
-  - 再判斷是否需要進 `context_registry.json` 與 `required_context_paths.txt`
+  - 再判斷是否需要進宿主 registry 與 allow-list
 - 不得出現：
   - md 已新增，但 registry 不知道它
   - registry 已指向該 md，但 allow-list 沒放
   - 同一份 leaf 同時被多個父層索引
 
 ## md 變更分數累積（強制）
-- 長期 md 只要有新增 / 修改 / 重組，就要同步更新：
-  - `config/md_change_review_state.json`
-- 建議優先使用：
-  - `python3 scripts/update_md_change_review_state.py --delta <N> --summary "<本次變更摘要>" --files <files...>`
+- 長期 md 只要有新增 / 修改 / 重組，就要同步更新宿主提供的 md change review state。
+- 應優先使用宿主提供的 state updater。
 - `current_edit_count`：
   用來記錄本輪累積幾次 md 變更。
 - `current_score`：
@@ -88,27 +86,24 @@
 - 若不確定，寧可偏高，不要低估。
 
 ## 達門檻後的整合審查（強制）
-- 當 `config/md_change_review_state.json.current_score >= score_threshold` 時：
-  1. 以 prompt directive 啟用 `ai-engineer`：
-     `[ACTIVE_AGENT_FILE] agent_governance/agents/ai-engineer.md`
+- 當宿主 md change review state 的 `current_score >= score_threshold` 時：
+  1. 透過宿主的 agent loader 啟用本倉庫 `agents/ai-engineer.md`
   2. 以資深 AI 工程師視角做一次整合審查
-  3. 先讀 `config/md_change_review_state.json.recent_events`，掌握近期變更脈絡，但只看近期有界事件，不回放完整歷史
+  3. 先讀宿主 md change review state 的 `recent_events`，掌握近期變更脈絡，但只看近期有界事件，不回放完整歷史
   4. 檢查：
      - 是否有重複入口
      - 是否有提示太鬆或太模糊
      - 是否有應落在 family 卻回流 root 的規則
      - registry / allow-list / 文件樹是否漂移
-  5. 完成必要整併後，執行：
-     - `python3 scripts/update_md_change_review_state.py --complete-review --summary "<整合摘要>"`
+  5. 完成必要整併後，使用宿主 state updater 完成 review reset 並記錄摘要
 - 未完成整合審查，不得直接把達門檻的狀態留著不處理。
 
 ## 驗證要求（強制）
-- 只要本次變更涉及 required context 樹，就應執行：
-  - `python3 scripts/validate_context_registry.py`
+- 只要本次變更涉及 required context 樹，就應執行宿主提供的 context-registry validator。
 - 若驗證失敗，不應把該次 md 變更視為完成。
 
 ## 回覆風格（強制）
 - AI 不必長篇大論，但必須先給出治理判斷，再開始編輯。
 - 若使用者明確指定某個落點，AI 仍應提出至少一個支持理由與一個反對理由，再決定是否照做。
 - 若使用者是在提想法，不是在下定稿指令，AI 應先討論結構、風險、替代方案，再修改 md。
-- `md_change_review_state.json` 的一般分數累積與未達門檻狀態屬內部維護，不需在任務收尾時主動回報；只有達門檻並啟動或完成整合審查，或使用者主動詢問此機制時，才簡短說明。
+- md change review state 的一般分數累積與未達門檻狀態屬內部維護，不需在任務收尾時主動回報；只有達門檻並啟動或完成整合審查，或使用者主動詢問此機制時，才簡短說明。

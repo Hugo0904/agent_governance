@@ -24,11 +24,11 @@
 ## 判斷順序（強制）
 1. 先分類，不可一被指正就直接新增 md。
 2. 再判斷資訊是否足夠確認。
-3. 最後才決定落點：改 code、記 task、更新專案規則、或更新 hub 規則。
+3. 最後才決定落點：改 code、記 task、更新專案規則、宿主規則或本套件治理文件。
 
 ## 被指正後的處理流程（強制）
 1. 先搜尋既有規範，不可直接宣稱沒有規則或直接新增 md。
-   - 搜尋範圍依當前任務層級決定：workspace / Canopy 問題搜 Canopy `AGENTS.md`、`agent_governance/agent_docs/`、registry；專案問題搜該專案 `AGENTS.md`、`agent_rules/`、相關專案內 md。
+   - 搜尋範圍依當前任務層級決定：宿主整合問題搜宿主 `AGENTS.md`、context registry 與 extension adapter；本套件內容問題搜本倉庫 `agent_docs/`；專案問題搜該專案 `AGENTS.md`、`agent_rules/` 與相關專案內 md。
    - 搜尋方式以語意關鍵字為主，不只搜使用者原句；需包含同義詞、功能名、table / class / route / command 名稱。
 2. 若找到相關 md，先判斷「為什麼沒有照規範執行」。
    - 未命中：調整正確層級的 routing / registry / 入口關鍵字。
@@ -36,12 +36,12 @@
    - 規則已清楚但仍失效：補 checklist、測試、grep 或其他可驗證控制，而不是重複寫同一句規則。
 3. 若找不到相關 md，才依分類新增或補到適合的規則檔。
    - `project_domain` / `project_architecture` 落在目標專案自己的規則。
-   - `workspace_principle` / `workflow_governance` 落在 Canopy 的 `agent_governance/agent_docs/`。
+   - `workspace_principle` 落在宿主治理文件；`workflow_governance` 依責任落在宿主 workflow 或本倉庫 `agent_docs/`，不得只因本套件被 checkout 在宿主內就混寫。
    - 只對單次任務成立的內容只記 progress，不升級成長期規則。
 4. 不得向上引入 md。
-   - 低層專案文件不可要求讀取父層 / workspace / hub 文件。
+   - 低層專案文件不可要求讀取父層、workspace 或宿主文件。
    - 若問題是父層沒有導到正確子規則，修父層 routing；若問題是子規則不足，修子規則本身。
-   - 專案文件只記專案自己的業務真相與工程規則；workspace / hub 文件才負責跨專案導讀與治理。
+   - 專案文件只記專案自己的業務真相與工程規則；workspace / 宿主文件才負責跨專案導讀與治理。
 5. 回覆方式必須聚焦解法與防再犯。
    - 不使用自我歸因式道歉作為答案主體，例如「疏忽」、「我遺漏」這類無法改善流程的說法。
    - 回覆只能圍繞「如何預防再犯」提出建設性修正：規則落點、未命中原因、已修正的 md / code / test、驗證結果、後續防再犯機制。
@@ -62,7 +62,7 @@
 - `project_domain`、`project_architecture`：
   更新目標專案自己的 `AGENTS.md` 或專案規則檔。
 - `workspace_principle`、`workflow_governance`：
-  更新 `<WORKSPACE_ROOT>/agent_governance/agent_docs/` 對應文件。
+  先分辨是宿主整合行為還是本套件治理內容，再更新各自的權威文件。
 - `task_local`：
   只記錄在 task / progress，不更新長期 md。
 - `code_only`：
@@ -82,8 +82,8 @@
 
 ## 長期 md 變更補充（強制）
 - 若本次指正會導致長期 md 新增 / 搬移 / 分層調整，先遵守 `md_change_governance.md`，再真正開始編輯。
-- 若變更影響 required context 樹，需同步檢查 `config/context_registry.json` 與 `config/required_context_paths.txt`。
-- 若實際有新增 / 修改長期 md，需同步更新 `config/md_change_review_state.json`。
+- 若變更影響 required context 樹，需同步檢查宿主提供的 context registry 與 allow-list。
+- 若實際有新增 / 修改長期 md，需同步更新宿主提供的 md change review state。
 
 ## 不可直接寫成規則的情況
 - 使用者只是舉例，未確認真實業務語意。

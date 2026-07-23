@@ -13,8 +13,8 @@
   OLTP / OLAP / ClickHouse / CDC 報表一致性檢查的通用導讀；用於快速找到目標專案自己的 runbook、secret 建立引導與只讀檢查腳本。
 - `agent_governance/agent_docs/db_inspection.md`
   何時可以主動查看 DB、查詢邊界、只讀原則、檢查順序。
-- `agent_governance/agent_docs/workspace_db_access.md`
-  只有在已判定需要 DB 驗證，且還需要知道本工作區的本機 / Docker 存取方式時才往下讀。
+- 宿主提供的 workspace DB access profile
+  只有在已判定需要 DB 驗證，且還需要知道本工作區的本機 / Docker 存取方式時才往下讀；本套件不指定其檔案位置。
 
 ## 邊界
 - 本目錄只做分流，不定義單一專案的資料表真相。

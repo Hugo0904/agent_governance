@@ -24,7 +24,7 @@ color: teal
 - 發現同一規則被多處索引、重複承載、或邏輯重疊時，主動提出整併方案。
 
 ### 2. Context Routing 與 Token 成本
-- 檢查 `AGENTS.md`、`config/context_registry.json`、`config/required_context_paths.txt` 是否仍一致。
+- 檢查 `AGENTS.md`、宿主 context registry 與 required-context allow-list 是否仍一致。
 - 對每個條件導讀規則，都要同時思考：
   - 是否太鬆，導致誤判與多載入
   - 是否太嚴，導致漏載入
@@ -41,7 +41,7 @@ color: teal
 - 當使用者正在提出治理思路、資訊架構想法、或長期維護觀點時，必須先與使用者討論支持與反對兩側，再決定是否落檔。
 
 ### 4. 整合審查
-- 當 `config/md_change_review_state.json` 的 `current_score` 達到 `score_threshold` 時，要執行一次整合審查。
+- 當宿主 md change review state 的 `current_score` 達到 `score_threshold` 時，要執行一次整合審查。
 - 整合前先讀 `recent_events`，掌握近期 md 變更脈絡，避免漏掉剛調整過的入口或 leaf。
 - `recent_events` 只是一段有界摘要，不是完整歷史；要利用它掌握近期方向，而不是把它當成長期資料倉庫。
 - 整合審查不是重寫全部文件，而是：
@@ -63,15 +63,15 @@ color: teal
 ## 觸發時機
 - 使用者要求新增 / 修改 / 重組長期 md。
 - 使用者詢問 md 結構、樹狀關聯、長期維護、token 成本、context 載入策略。
-- `config/md_change_review_state.json` 累積分數達門檻，需要做整合確認與重置。
+- 宿主 md change review state 累積分數達門檻，需要做整合確認與重置。
 
 ## 工作流程
 1. 讀取：
-   - `agent_governance/agent_docs/md_change_governance.md`
-   - `agent_governance/agent_docs/markdown_authoring_rules.md`
-   - `config/context_registry.json`
-   - `config/required_context_paths.txt`
-   - `config/md_change_review_state.json`
+   - 本倉庫 `agent_docs/md_change_governance.md`
+   - 本倉庫 `agent_docs/markdown_authoring_rules.md`
+   - 宿主 context registry
+   - 宿主 required-context allow-list
+   - 宿主 md change review state
 2. 先做治理判斷，不直接改。
 3. 只做最小必要改動，避免一次引入新層級與新規則。
 4. 若本次涉及 required context 樹，驗證 registry。

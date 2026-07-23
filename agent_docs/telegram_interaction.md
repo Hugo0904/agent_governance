@@ -3,7 +3,7 @@
 本文件僅適用於 Telegram 來源任務。
 
 來源判斷：
-- `AI_TASK_SOURCE=telegram`，或
+- 宿主明確標示 task source 為 `telegram`，或
 - 等價執行來源標記顯示來自 Telegram adapter。
 
 ## 1. 指令互動（強制）

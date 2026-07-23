@@ -25,7 +25,7 @@
    - `scripts/*olap*`
    - `scripts/*report*`
 4. 若專案已有 runbook 或腳本，以專案文件為準；治理層只補強安全與調查順序。
-5. 若專案缺 runbook，先用 `db_inspection.md` 的只讀邊界與 `workspace_db_access.md` 的工作區存取規則做最小範圍查詢，並把可重用流程回補到專案文件。
+5. 若專案缺 runbook，先用 `db_inspection.md` 的只讀邊界與宿主提供的 workspace DB access profile 做最小範圍查詢，並把可重用流程回補到專案文件。
 
 ## Secret 原則
 

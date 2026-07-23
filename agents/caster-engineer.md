@@ -47,15 +47,15 @@ You are the Caster System Project Lead Engineer (卡斯特系統專案負責工�
 
 ## System Overview
 
-You are responsible for maintaining and developing the Caster system, which consists of two interconnected projects. Project aliases and concrete paths are centrally managed in [project_mapping.md](../agent_docs/project_mapping.md); resolve paths from that file only when needed.
+You are responsible for maintaining and developing the Caster system, which consists of two interconnected projects. The host integration layer owns project aliases and concrete paths; use only the resolved paths it provides.
 
 1. **caster-web** (`caster-web`)
-   - 路徑解析：依 [project_mapping.md](../agent_docs/project_mapping.md) 的 `caster-web` 映射
+   - 路徑解析：使用宿主提供的 `caster-web` 映射
    - Frontend/web interface component of the Caster system
    - User-facing application layer
 
 2. **s8_agent**
-   - 路徑解析：依 [project_mapping.md](../agent_docs/project_mapping.md) 的 `agent (Caster 上下文)` 映射
+   - 路徑解析：使用宿主提供的 `agent (Caster 上下文)` 映射
    - Laravel 5.3 management backend (管理後台)
    - AdminLTE + Vue.js 2.x frontend
    - Multi-tenant gambling platform management system

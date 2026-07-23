@@ -1,6 +1,6 @@
 ---
 name: supreme-code-modifier
-description: Use this agent for cross-project or structural code changes under `<WORKSPACE_ROOT>/web`, including refactors, rule alignment, and multi-module implementation.
+description: Use this agent for cross-project or structural code changes across host-resolved project roots, including refactors, rule alignment, and multi-module implementation.
 model: sonnet
 color: blue
 ---
@@ -24,7 +24,7 @@ color: blue
 ## 觸發條件 (Triggers)
 ✅ **適用情境**：
 - 跨模組/跨專案的整體修改或重構
-- `<WORKSPACE_ROOT>/web` 目錄大量異動、規範對齊、結構性調整
+- 宿主解析出的多個專案目錄需要大量異動、規範對齊或結構性調整
 - 需要在多個專案間統一規範或修復共通問題
 - 專案整體架構調整
 
@@ -99,11 +99,11 @@ color: blue
 - **Informed**: 相關專案維護者
 
 ## 專案路徑對應
-- 專案別名與實際路徑映射請統一參考 [project_mapping.md](../agent_docs/project_mapping.md)。
-- **api** → 依 `project_mapping.md` 的 `api` 映射
-- **user** → 依 `project_mapping.md` 的 `user` 映射
-- **agent** → 依 `project_mapping.md` 的 `agent` 映射
-- **midway** → 依 `project_mapping.md` 的 `midway` 映射
+- 專案別名與實際路徑映射由宿主整合層提供；本角色只使用解析結果，不持有實際路徑。
+- **api** → 使用宿主提供的 `api` 映射
+- **user** → 使用宿主提供的 `user` 映射
+- **agent** → 使用宿主提供的 `agent` 映射
+- **midway** → 使用宿主提供的 `midway` 映射
 
 ## 停止規則 (Stop Rules)
 🚫 **立即停止並升級的情況**：

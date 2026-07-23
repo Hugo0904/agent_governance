@@ -1,6 +1,6 @@
 # 規則演化治理
 
-本文件定義 Canopy 如何把使用者指正、任務經驗、md / json 規則與既有規範整合成可重用的長期行為。
+本文件定義採用本治理套件的系統，如何把使用者指正、任務經驗、md / json 規則與既有規範整合成可重用的長期行為。
 
 ## 目的
 - 讓規則可以小步微調，但仍可追溯、可驗證、可被取代。
@@ -40,7 +40,7 @@ conflict_policy: ask_if_equal
 必要欄位：
 - `rule_id`：穩定 id，不因文案調整而改名。
 - `status`：`draft`、`active`、`superseded`、`deprecated`、`archived`。
-- `priority_tier`：使用本文件與 `config/rule_evolution_policy.json` 定義的 tier。
+- `priority_tier`：使用本文件與宿主提供的 rule evolution policy 定義的 tier。
 - `scope`：`workspace`、`project:<project>`、`language:<language>`、`agent:<agent>`、`task:<task_id>`。
 - `owner_doc`：唯一權威落點；同一規則不可同時由多份 leaf 共同擁有。
 
@@ -124,11 +124,6 @@ conflict_policy: ask_if_equal
 - 若 md 與 json 不一致，以 md_change_governance 的 hard gate 先停下來修正來源，不由 AI 任意猜測。
 
 ## 最小驗證
-涉及本文件或規則 registry 的變更，收尾前至少檢查：
+涉及本文件或規則 registry 的變更，收尾前至少執行宿主提供的 registry 結構驗證與 context-routing 情境測試；本套件不指定宿主的腳本路徑或命令名稱。
 
-```bash
-python3 scripts/validate_context_registry.py
-python3 scripts/resolve_required_context.py --repo-root . --prompt "<rule-evolution prompt>" --context-output /tmp/context.txt --notes-output /tmp/notes.txt --task-mode-output /tmp/mode.txt
-```
-
-若本次新增 / 修改長期 md，仍需同步更新 `config/md_change_review_state.json`。
+若本次新增 / 修改長期 md，仍需同步更新宿主提供的 md change review state。

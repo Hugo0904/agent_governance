@@ -13,20 +13,14 @@
   - Task 規範目錄：`agent_docs/task/README.md`
   - Task intake 流程：`agent_docs/task_intake_workflow.md`
   - Task 文件契約：`agent_docs/task_document_contract.md`
-  - 客製化擴充索引：`agent_docs/custom_extensions.md`
 
 ## Markdown 治理補充
 - `agents/ai-engineer.md`：
   用於長期 md 治理、樹狀索引整合、context routing 與 token 成本檢查。
-- `config/md_change_review_state.json`：
-  用於追蹤長期 md 變更的加權分數；達門檻後需啟動整合審查並重置。
-- `config/rule_evolution_policy.json`：
-  用於保存規則優先權、生命週期狀態、衝突解法與防循環限制的結構化政策。
+- 宿主可提供 machine-readable context registry、md change review state 與 rule evolution policy；本倉庫只定義它們應支援的治理行為，不指定實體路徑或命令。
 
-## 主規範入口
-- `<WORKSPACE_ROOT>/AGENTS.md`
-
-## 路徑原則
-- 本倉庫只放「可跨機重用」規則，不放機器綁定絕對路徑。
-- 專案路徑映射屬於客製化擴充，啟用時參考：`agent_docs/project_mapping.md`（由 `agent_docs/custom_extensions.md` 索引）。
-- 執行時由 `WORKSPACE_ROOT` 展開 `<WORKSPACE_ROOT>`；若未設定則回退使用 `AI_ALLOWED_ROOT`。
+## 宿主整合邊界
+- 本倉庫只定義可重用的代理角色、治理文件與可選擴充內容，不指定宿主專案的主規範入口。
+- 安裝位置、目標 workspace、絕對路徑、環境變數與 placeholder 展開方式，均由採用本套件的宿主系統負責。
+- 專案映射、本機操作資料與客製化啟用清單屬於宿主設定，不放入本倉庫。
+- 若需調整某個宿主如何發現、載入或限制本套件，應修改宿主整合規範，不應把宿主本機規則寫入本倉庫。

@@ -41,20 +41,16 @@
 
 ## Context Registry 同步（強制）
 - 若長期 md 的新增 / 搬移 / 分層調整會影響 required context 樹，必須同步檢查：
-  - `config/context_registry.json`
-  - `config/required_context_paths.txt`
-- `required_context_paths.txt` 是候選 allow-list；
-  `context_registry.json` 是實際條件導讀與父子關係定義。
+  - 宿主 context registry
+  - 宿主 required-context allow-list
+- allow-list 保存候選文件；context registry 定義實際條件導讀與父子關係。
 - 新增 family README 時，不得只補 md 本身，必須同步補 registry 關係。
 - 新增 leaf 時，若該 leaf 可能成為 required context 候選，也必須同步補 allow-list / registry。
-- 完成前應執行：
-  `python3 scripts/validate_context_registry.py`
+- 完成前應執行宿主提供的 context-registry validator。
 
 ## md 變更狀態同步（強制）
-- 只要本次變更屬於長期 md，就必須同步更新：
-  - `config/md_change_review_state.json`
-- 建議使用：
-  `python3 scripts/update_md_change_review_state.py --delta <N> --summary "<摘要>" --files <files...>`
+- 只要本次變更屬於長期 md，就必須同步更新宿主提供的 md change review state。
+- 應使用宿主提供的 updater，而不是直接手改累積狀態。
 - `current_score` 是加權分數，不是單純次數；
   AI 應依變更幅度估算 `+1 / +3 / +5 / +10`。
 - 達到門檻後，必須依 `md_change_governance.md` 啟動整合審查與重置流程。
