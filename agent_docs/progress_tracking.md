@@ -23,7 +23,7 @@
 ```
 
 ## 3. latest_20 索引（強制）
-- 必須維護：`<AI_AGENT_HUB_ROOT>/progress/latest_20.md`。
+- 必須維護：`<CANOPY_ROOT>/progress/latest_20.md`。
 - 僅保留最後編輯的 50 個任務檔（排除 `latest_20.md`）。
 - 可用 `PROGRESS_LATEST_INDEX_LIMIT` 調整索引保留數量（預設 `50`）。
 - 每筆格式遵循系統索引輸出：`task_id | updated_at | status | title | file`。

@@ -28,7 +28,7 @@
 
 ## 被指正後的處理流程（強制）
 1. 先搜尋既有規範，不可直接宣稱沒有規則或直接新增 md。
-   - 搜尋範圍依當前任務層級決定：workspace / hub 問題搜 `ai-agent-hub/AGENTS.md`、`agent_governance/agent_docs/`、registry；專案問題搜該專案 `AGENTS.md`、`agent_rules/`、相關專案內 md。
+   - 搜尋範圍依當前任務層級決定：workspace / Canopy 問題搜 Canopy `AGENTS.md`、`agent_governance/agent_docs/`、registry；專案問題搜該專案 `AGENTS.md`、`agent_rules/`、相關專案內 md。
    - 搜尋方式以語意關鍵字為主，不只搜使用者原句；需包含同義詞、功能名、table / class / route / command 名稱。
 2. 若找到相關 md，先判斷「為什麼沒有照規範執行」。
    - 未命中：調整正確層級的 routing / registry / 入口關鍵字。
@@ -36,7 +36,7 @@
    - 規則已清楚但仍失效：補 checklist、測試、grep 或其他可驗證控制，而不是重複寫同一句規則。
 3. 若找不到相關 md，才依分類新增或補到適合的規則檔。
    - `project_domain` / `project_architecture` 落在目標專案自己的規則。
-   - `workspace_principle` / `workflow_governance` 落在 `ai-agent-hub/agent_governance/agent_docs/`。
+   - `workspace_principle` / `workflow_governance` 落在 Canopy 的 `agent_governance/agent_docs/`。
    - 只對單次任務成立的內容只記 progress，不升級成長期規則。
 4. 不得向上引入 md。
    - 低層專案文件不可要求讀取父層 / workspace / hub 文件。

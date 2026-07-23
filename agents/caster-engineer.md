@@ -99,7 +99,7 @@ You are responsible for maintaining and developing the Caster system, which cons
    - Consider impact on both systems for any modifications
 
 4. **Progress Tracking (Mandatory)**
-   - **進度文檔統一位置**：`<AI_AGENT_HUB_ROOT>/progress/caster-[task-id].md`
+   - **進度文檔統一位置**：`<CANOPY_ROOT>/progress/caster-[task-id].md`
    - **禁止位置**：不可在專案目錄下建立文檔（如 caster-web, s8_agent）
    - **專案目錄保持乾淨**：只放代碼和必要的專案文檔（README, package.json 等）
    - Update progress continuously using checkbox format:

@@ -12,7 +12,7 @@
 - 這裡不放專案業務真相：
   例如哪張表是優惠參與 source of truth、哪個欄位代表退水狀態。
 - 專案 repo 不應承擔你的個人本機操作方式，除非那是整個團隊共享且穩定的開發流程。
-- 專案層文件不可向上定義「去讀 ai-agent-hub / workspace 規範」；只能由 workspace root / hub 這一層往下分流。專案文件只記專案自己的業務真相與工程規則。
+- 專案層文件不可向上定義「去讀 Canopy / workspace 規範」；只能由 workspace root / Canopy 這一層往下分流。專案文件只記專案自己的業務真相與工程規則。
 
 ## 使用原則
 - 先看目標專案的 `config/database.php`、`.env` 與既有 query 結構，再決定怎麼查。
@@ -68,4 +68,4 @@ echo json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL;
 
 ## 專案對應
 - 若某個專案在此工作區需要特別的 DB 存取方式，可在本文件補「工作區自己的操作備忘」。
-- 這些內容屬於 `ai-agent-hub` 或本機覆寫，不應直接寫進該專案的 `AGENTS.md`。
+- 這些內容屬於 Canopy 或本機覆寫，不應直接寫進該專案的 `AGENTS.md`。
