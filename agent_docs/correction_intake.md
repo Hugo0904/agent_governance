@@ -37,7 +37,7 @@
 3. 若找不到相關 md，才依分類新增或補到適合的規則檔。
    - `project_domain` / `project_architecture` 落在目標專案自己的規則。
    - `workspace_principle` 落在宿主治理文件；`workflow_governance` 依責任落在宿主 workflow 或本倉庫 `agent_docs/`，不得只因本套件被 checkout 在宿主內就混寫。
-   - 只對單次任務成立的內容只記 progress，不升級成長期規則。
+   - 只對單次任務成立的內容只記 task log，不升級成長期規則。
 4. 不得向上引入 md。
    - 低層專案文件不可要求讀取父層、workspace 或宿主文件。
    - 若問題是父層沒有導到正確子規則，修父層 routing；若問題是子規則不足，修子規則本身。
@@ -64,7 +64,7 @@
 - `workspace_principle`、`workflow_governance`：
   先分辨是宿主整合行為還是本套件治理內容，再更新各自的權威文件。
 - `task_local`：
-  只記錄在 task / progress，不更新長期 md。
+  只記錄在 task log，不更新長期 md。
 - `code_only`：
   只修 code，不更新長期 md。
 

@@ -1,60 +1,35 @@
 # Agent 工作流程與委派規範
 
-## 1. Agent 清單
-- 芙拉 / Fulla：`executive-secretary-fulla`
-- John：`supreme-code-modifier`
-- Jerry：`payment-engineer`
-- Ann：`slack-sender`
-- Caster：`caster-engineer`
-- Ravi：`code-reviewer-ravi`
-- Git/PR 助理：`git-pr-assistant`
+## 定位
+- 本文件定義角色如何被選擇、委派與驗證，不維護固定主管階級或專案路徑。
+- 宿主可提供 machine-readable role registry；角色來源只宣告可重用能力與責任契約。
 
-## 2. 路徑規則
-- 代理路徑、專案映射與流程規範以 `agent_governance` 內文件為準。
-- PR review 的 reviewer 指派與擴充規範以 `agent_docs/review_governance.md` 為準。
+## 選擇順序
+1. 當前使用者明確指定的 active role。
+2. 宿主依 task intent、domain、project evidence 與角色 contract 得到的穩定單一候選。
+3. 候選接近或證據衝突時，由當回合 LLM 選最多一個，或判定 `no_role_needed`。
+4. 沒有專業角色能明顯改善任務時，直接由主 agent 執行。
 
-## 3. 模式切換（強制）
-1. 使用者說「芙拉」或「呼叫芙拉」：切到 `executive-secretary-fulla`。
-2. 保持芙拉模式，直到使用者說「主模式」才切回。
-3. 不確定時必問：「您是要找芙拉還是主模式？」
+不得只因出現單一關鍵字就載入角色，也不得把多個候選全文合併。角色內容低於安全、當前明確指令與目標專案較近規則。
 
-## 4. 委派規則（強制）
+## 委派契約
+- 只有工作能獨立驗證、責任清楚且平行化確實有收益時才委派。
+- 每個委派必須提供：目的、輸入、限制、輸出、驗證與升級條件。
+- 領域工作可直接交給對應角色，不需經過固定中間角色。
+- coordinator 可以整理 owner 與依賴，但不得替 domain role 做專業決策。
+- workflow role 只在明確操作意圖成立時使用，例如 code review、Git delivery 或 Slack notification。
 
-### 4.1 芙拉模式
-- 芙拉接收技術需求後，一律先委派 John。
-- Jerry/Caster/Ravi/Git-PR 助理皆由 John 轉委派。
-- 禁止芙拉直接委派 Jerry 或其他技術代理。
+## Task Intake 後的判定
+- 若使用者以任務檔啟動工作，先完成 task intake，再以任務全文判斷角色。
+- 判斷需綜合系統、資料流、操作、風險與專案結構，不以廠商名稱或局部詞彙硬套角色。
+- 領域只被局部提及、主要工作不在該領域時，不載入完整 domain role。
 
-### 4.2 主模式
-- 可直接依任務內容委派：
-  - 內容明顯涉及支付/金流系統 -> Jerry
-  - Caster 任務 -> Caster
-  - PR Code Review -> 依 `review_governance.md` 決定（預設 Ravi）
-  - PR 建立/推送/GitHub PR 操作 -> Git/PR 助理
-  - 其他技術任務 -> John 或對應代理
+## 通知
+- 通知只在使用者、上游流程或外部交接確實要求時發送，不是所有委派的固定三次儀式。
+- 發送行為使用 `slack-sender` 等 workflow role，並以工具回傳證明實際送達。
+- Telegram 或手機通道的呈現遵守 `agent_docs/telegram_interaction.md`，預設只回報結果、原因與必要下一步。
 
-### 4.3 Task Intake 後的內容導向判定（強制）
-- 若使用者以「我要執行任務 {task.md}」等語意啟動任務，必須先讀任務檔內容，再決定是否委派或參考特定代理規範。
-- 判定依據以任務內容整體脈絡為準，例如涉及的系統、資料流、文件類型、操作對象、風險性質與既有專案結構；不得只依賴單一句型、單一關鍵字或固定廠商代號。
-- 若任務內容明顯在處理支付供應商接入、代收/代付流程、商戶設定、支付回調、對帳、金流後台或其他支付資料流，可委派 Jerry，或至少參考 `payment-engineer` 規範完成導讀與提問。
-- 若內容只有局部提到金流，但主題其實是文案、排版、一般後台設定或其他非支付核心變更，則不必強制委派 Jerry。
-- 若判定存在歧義，必須在導讀階段主動向使用者確認；不可因想避免遺漏而一律硬套某位代理。
-
-## 5. Slack 通知機制（強制）
-- 三個時點必通知：委派、接收、完成。
-- 呼叫 Ann 時，prompt 開頭必須標明身份（例：`我是 Jerry`）。
-- 訊息格式保持精簡：`•` 與 `→`，避免不必要內容。
-
-## 6. Telegram 完成通知（電腦端，強制）
-- Telegram 互動與完成通知細節以 `agent_docs/telegram_interaction.md` 為準。
-- 本檔僅定義委派責任，不重複 Telegram 呈現格式與互動細節。
-
-## 7. 搜尋規則（強制）
-1. 優先使用精確關鍵字（函式/類名）。
-2. 限制檔案類型（如 `*.php`、`*.js`）。
-3. 限制目錄範圍到目標子目錄。
-4. 禁止無限制全專案模糊搜尋。
-
-## 8. 失敗判定
-- 未發送必要 Slack 通知：流程未完成。
-- 使用無效搜尋策略（大範圍模糊搜尋）：流程不合規。
+## 驗證與失敗
+- 宿主應留下 bounded selection trace：狀態、候選、證據、選定角色與 context 字數，不保存 prompt 或所有角色全文。
+- 角色找不到、已 deprecated、與 closer project rule 衝突或 context 超限時，需明確降級或停止，不得假稱已套用。
+- 角色選擇錯誤應修正 registry taxonomy、contract 或 eval；不可只為當次 prompt 新增一條角色關鍵字。

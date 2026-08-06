@@ -3,7 +3,7 @@
 本目錄集中管理可跨機重用的代理與規範文件。
 
 ## 結構
-- `agents/`：代理定義（例如 Fulla、John、Jerry、Ann、Caster、AI Engineer）
+- `agents/`：可重用角色契約；active roles 可由宿主選擇，deprecated roles 只保留舊引用的遷移資訊
 - `agent_docs/`：規範與流程文件（進度、委派、路徑、命令）
   - DB 規範目錄：`agent_docs/db/README.md`
   - 語言規範目錄：`agent_docs/languages/README.md`
@@ -24,3 +24,9 @@
 - 安裝位置、目標 workspace、絕對路徑、環境變數與 placeholder 展開方式，均由採用本套件的宿主系統負責。
 - 專案映射、本機操作資料與客製化啟用清單屬於宿主設定，不放入本倉庫。
 - 若需調整某個宿主如何發現、載入或限制本套件，應修改宿主整合規範，不應把宿主本機規則寫入本倉庫。
+
+## 角色契約
+- 每個角色以 YAML frontmatter 提供 `name`、精確的 `description`、`model: inherit` 與 inline JSON `metadata`。
+- 正文固定包含 `Mission`、`Inputs`、`Decisions`、`Outputs`、`Verification`、`Escalation`、`Boundaries`，使宿主能驗證責任完整性。
+- Metadata 只描述 task/domain evidence、狀態與 selection boundary；宿主負責 taxonomy、候選排序、context budget 與 project mapping。
+- 專案專屬角色應遷回目標 repository。舊名稱可保留為 `deprecated` compatibility contract，但不得自動選擇。

@@ -65,7 +65,7 @@ conflict_policy: ask_if_equal
 | `P4_FAMILY_LEAF_RULE` | 語言、DB、review、task 等 family leaf | 同主題內比 root router 更具體 |
 | `P5_WORKSPACE_METHOD` | 跨專案方法論與一般工程原則 | 提供預設策略，不覆蓋專案權威規則 |
 | `P6_LOCAL_PREFERENCE` | 本機偏好、文風、操作習慣 | 可被當前任務或專案規則覆蓋 |
-| `P7_EXAMPLE_OR_HISTORY` | progress、task 歷史、範例 | 只能當參考，不可單獨推翻 active 規則 |
+| `P7_EXAMPLE_OR_HISTORY` | task-log 歷史、範例 | 只能當參考，不可單獨推翻 active 規則 |
 
 同一 tier 內再看 scope specificity：
 `project:<name>` > `language:<name>` / `agent:<name>` > `workspace` > `task history` > `example`。
@@ -87,7 +87,7 @@ conflict_policy: ask_if_equal
 - 要讓舊規範退場，必須至少滿足一項：
   - 新規則明確列出 `supersedes`。
   - 舊規則改成 `superseded` 並標明 `superseded_by`。
-  - 舊段落被刪除或改寫，且 progress / md change state 記錄摘要。
+  - 舊段落被刪除或改寫，且 task log / md change state 記錄摘要。
 - 不可只新增「補充說明」放在另一份 md，讓兩份文件同時保持 active 並互相打架。
 - 如果舊規範在專案 leaf，新規則也應優先回到同一 leaf 或其父層 README；不要直接回流 root。
 
@@ -114,7 +114,7 @@ conflict_policy: ask_if_equal
 - 若第二次合成後仍衝突，停止並要求使用者選擇權威來源。
 - 不建立 A supersedes B、B 又 supersedes A 的互相取代關係。
 - 不用 `review_after` 或日期自動改變優先權；到期只觸發重新檢查。
-- 不把 `progress` 中的歷史結果升級成 active 規則，除非經過 intake / classify / merge。
+- 不把 task log 中的歷史結果升級成 active 規則，除非經過 intake / classify / merge。
 - 不為了讓 resolver 命中而把大量關鍵字塞進 root；優先調整正確 family 或 leaf 的 routing。
 
 ## md 與 json 的使用邊界
