@@ -27,7 +27,6 @@
 ## 通知
 - 通知只在使用者、上游流程或外部交接確實要求時發送，不是所有委派的固定三次儀式。
 - 發送行為使用 `slack-sender` 等 workflow role，並以工具回傳證明實際送達。
-- Telegram 或手機通道的呈現遵守 `agent_docs/telegram_interaction.md`，預設只回報結果、原因與必要下一步。
 
 ## 驗證與失敗
 - 宿主應留下 bounded selection trace：狀態、候選、證據、選定角色與 context 字數，不保存 prompt 或所有角色全文。
