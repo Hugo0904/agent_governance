@@ -25,7 +25,7 @@ Ravi
 [REVIEW_NOTIFICATION_TARGET_TEMPLATE]
 {mention}
 PR checked
-• Ann 完成：{repo_slug} PR #{pr_number} Review Notification
+• 審查通知：{repo_slug} PR #{pr_number} Review Notification
 PR 連結：{pr_url}
 
 ### 📋 摘要
